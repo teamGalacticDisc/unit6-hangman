@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Use Statement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap">
+<style>
+:root{--bg:#0a0f1f;--ink:#eef2ff;--muted:#aab4dc;--gold:#ffd447;--line:#ffffff2a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 0%,#1a2350 0,transparent 55%),var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;font-size:18px;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:40px 16px 60px}
+.eyebrow{font-family:"Press Start 2P",monospace;font-size:10px;color:#5ad1ff;margin:0}
+h1{font-family:"Press Start 2P",monospace;font-weight:400;font-size:clamp(18px,3.4vw,26px);line-height:1.5;margin:14px 0 20px}
+h2{font-size:20px;color:var(--gold);margin:30px 0 8px}
+p,li{color:var(--ink)}
+.muted{color:var(--muted)}
+blockquote{margin:10px 0;padding:12px 16px;border-left:4px solid var(--gold);background:#ffffff0d;border-radius:0 8px 8px 0;font-style:italic}
+table{border-collapse:collapse;width:100%;font-size:16px;margin-top:8px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:700}
+a{color:#5ad1ff}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">ARIN 320 · UNIT 6 · CLASS GAME</p>
+  <h1>AI USE STATEMENT</h1>
+  <p>This game was built with an AI coding assistant, Claude (made by Anthropic), running in Claude Code. I came up with the project and directed it. The AI wrote the code. Here is who did what.</p>
+
+  <h2>What I did</h2>
+  <ul>
+    <li>Came up with the idea: a two team Hangman game for Unit 6 that we can play live in class on one shared screen.</li>
+    <li>Set every rule: teams take turns, right letters keep the turn, one steal and one lifeline per team, a bonus question for the team that wins each word, and a set number of rounds I choose.</li>
+    <li>Pointed the AI at the Unit 6 course material and told it not to make up any terms that are not in the unit. Every word lists the Unit 6 page and section it came from, so anyone can check it.</li>
+    <li>Asked for the tools I need to run it: a live scoreboard, a teacher panel to change points and undo mistakes, a round history, scores that survive a refresh, a CSV download, and a winner screen.</li>
+    <li>Changed the drawing. The first version built a fighter jet. I asked for something tied to ARIN instead, so now each wrong letter builds an AI robot.</li>
+    <li>Chose where to host the game and published it here.</li>
+  </ul>
+
+  <h2>What the AI did</h2>
+  <table>
+    <thead><tr><th>Part</th><th>How AI was used</th></tr></thead>
+    <tbody>
+      <tr><td>Code</td><td>The AI wrote the HTML, CSS, and JavaScript for the game and this site: the letter board, turns, scoring, steals, lifelines, bonus questions, teacher panel, round history, saving, and the CSV download. It also played through full games in a browser to test it.</td></tr>
+      <tr><td>Images</td><td>No image generator was used. The AI drew the robot as simple shapes written directly in code.</td></tr>
+      <tr><td>Text</td><td>Using the Unit 6 material, the AI picked 19 key terms and drafted each clue, fun fact, and bonus question. It did not pull terms from anywhere else, and each one lists the Unit 6 page it came from.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>The prompts I used</h2>
+  <p class="muted">Edited for spelling and clarity. The requests are the same as the ones I sent.</p>
+
+  <p><b>The game itself.</b> I wrote this one using the Role, Task, Context, Format setup from class, so the AI had everything up front.</p>
+  <blockquote>Role: You are a game designer and teacher's helper for my ARIN 320 class.<br><br>
+  Task: Build a two team Hangman game for Unit 6 where the teams compete head to head. Pull every word and clue straight from the Unit 6 content. Don't make up terms that aren't in the unit.<br><br>
+  Context: We play live in class on one shared screen. I can type in the team names at the start. Use 15 to 20 key Unit 6 terms. Each word gets a plain clue, plus a one line fun fact or example from the unit that shows after it is solved. Teams take turns guessing letters. A right letter earns points and keeps the turn. A wrong letter passes the turn to the other team. Either team can try to solve the whole word on its turn. A right solve earns big points, and a wrong solve costs points. Each team gets one steal per game to solve the other team's word. Each team gets one lifeline that reveals a letter. The team that solves a word gets a bonus question from the unit for extra points. A round ends when the word is solved or the drawing is finished. The game ends after a set number of rounds that I choose. Each wrong letter adds a piece to the drawing. Show a live scoreboard, a teacher panel where I can add or take away points, undo the last change, and reset the game, a round by round history, scores saved in the browser, a CSV download, and a winner screen.<br><br>
+  Format: One HTML file that opens in any browser with no install. Big text that's easy to read on a projector. Letters work by clicking or typing on the keyboard. Add a short how to play box. List the Unit 6 file each word came from so I can check it.</blockquote>
+  <p class="muted"><b>What I learned:</b> because the prompt spelled out the rules, the scoring tools, and the format, the first version already did what I pictured. The only thing I changed was the drawing.</p>
+
+  <p><b>Changing the drawing.</b></p>
+  <blockquote>Let's have it be something related to ARIN instead of a fighter jet.</blockquote>
+  <p class="muted">The AI swapped the jet for an AI robot built in 8 pieces. The last piece is an AI chip that lights up, and when it lights up the round is over.</p>
+
+  <p><b>Hosting it.</b></p>
+  <blockquote>Okay now can you host it on GitHub? Look at my Unit 5 sprint repo as well and try to do the same.</blockquote>
+  <p class="muted">The AI set this repo up the same way as my Unit 5 sprint: a home page with a link to the game, and this AI use page.</p>
+
+  <h2>Why I hosted it on GitHub</h2>
+  <p>We play this together in class, so it needs to open fast on whatever computer is hooked up to the projector. I used GitHub Pages again, the same as my Unit 5 sprint.</p>
+  <ul>
+    <li><b>One link.</b> Open the web address and play. There's nothing to download or install.</li>
+    <li><b>Always the latest version.</b> When I push a fix, the link has it the next time the page loads.</li>
+    <li><b>Free, with no server or accounts.</b> The game is one plain web page, so GitHub can host it as is.</li>
+    <li><b>Open to check.</b> The code is public, so anyone, including my instructor, can see exactly what the game does.</li>
+  </ul>
+  <p>Scores save only in the browser on that computer. Nothing is sent to me or stored online.</p>
+
+  <h2>Why this matters for Unit 6</h2>
+  <p>Unit 6 says domain knowledge belongs in the design. The AI could write the code, but it only knew what to build because I gave it the course material and the rules for how our class plays. I check the game myself before we play it in class. Nothing goes in front of the class on the AI's word alone.</p>
+
+  <p style="margin-top:30px"><a href="index.html">◀ Back to the game</a></p>
+</main>
+</body>
+</html>

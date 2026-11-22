@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit 6 AI Lab Sprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap">
+<style>
+:root{--bg:#0a0f1f;--ink:#eef2ff;--muted:#aab4dc;--gold:#ffd447;--line:#ffffff2a;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 15% 0%,#1a2350 0,transparent 55%),var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;font-size:18px;line-height:1.6}
+.wrap{max-width:820px;margin:0 auto;padding:40px 16px 60px}
+.eyebrow{font-family:"Press Start 2P",monospace;font-size:10px;color:#5ad1ff;margin:0}
+h1{font-family:"Press Start 2P",monospace;font-weight:400;font-size:clamp(18px,3.4vw,26px);line-height:1.5;margin:14px 0 20px}
+h2{font-size:20px;color:var(--gold);margin:30px 0 8px}
+p,li{color:var(--ink)}
+.muted{color:var(--muted)}
+blockquote{margin:10px 0;padding:12px 16px;border-left:4px solid var(--gold);background:#ffffff0d;border-radius:0 8px 8px 0;font-style:italic}
+table{border-collapse:collapse;width:100%;font-size:16px;margin-top:8px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:700}
+a{color:#5ad1ff}
+.box{border:2px solid var(--line);border-radius:10px;padding:14px 18px;background:#ffffff08;margin:14px 0}
+.big{font-size:20px;font-weight:700;word-break:break-all}
+td:first-child{white-space:nowrap}
+@media print{body{background:#fff;color:#000}.wrap{max-width:none}p,li,td,th{color:#000}h2{color:#000}a{color:#000}.noprint{display:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="eyebrow">ARIN 320 · UNIT 6 · AI LAB SPRINT · 30 POINTS</p>
+  <h1>FIT IT TO THE FIELD: TEAM HANGMAN</h1>
+  <p>Every word in this sprint comes from Unit 6. Your site plays as one team against the other site. You race to solve terms like domain shift, shortcut, and the Fit Check, and you win bonus points by remembering what happened in the Unit 6 cases. Then each of you takes two of the words and fits them to your own field.</p>
+
+  <h2>Open the sprint</h2>
+  <p>Your instructor runs the game on one shared screen. If you want to follow along on your own laptop, copy this address into your web browser:</p>
+  <div class="box big">https://teamgalacticdisc.github.io/unit6-hangman/</div>
+  <p class="muted">The game runs in your browser. No installation and no account needed.</p>
+
+  <h2>Before you start</h2>
+  <ul>
+    <li>Each site is one team: Yokota and Iwakuni.</li>
+    <li>Each team picks one <b>caller</b>. Talk it over as a team, then the caller says your letter or your answer out loud.</li>
+    <li>Turn on your sound. The game reads each clue, answer, and bonus question out loud.</li>
+    <li>Keep a piece of paper or a blank document open. You will write down the words as they are solved.</li>
+  </ul>
+
+  <h2>How the game works</h2>
+  <table>
+    <thead><tr><th>Move</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>Guess a letter</td><td>A right letter is worth 10 points each time it shows up, and your team keeps the turn. A wrong letter adds a piece to the AI robot and the turn passes to the other site.</td></tr>
+      <tr><td>Solve</td><td>On your turn, try the whole word. Right is worth 50. Wrong costs 20 and the turn passes.</td></tr>
+      <tr><td>Steal</td><td>Once per game, solve the word on the other site's turn. Right is worth 50. Wrong costs 20.</td></tr>
+      <tr><td>Lifeline</td><td>Once per game, reveal one letter for free on your turn.</td></tr>
+      <tr><td>Bonus question</td><td>The team that wins the word gets one Unit 6 question worth 25.</td></tr>
+      <tr><td>Robot finished</td><td>Eight wrong letters builds the whole robot. Nobody wins that word.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>What your team does</h2>
+  <table>
+    <thead><tr><th>Step</th><th>What you do</th></tr></thead>
+    <tbody>
+      <tr><td>1. Listen</td><td>Your instructor teaches the Unit 6 ideas the game uses. About 10 minutes.</td></tr>
+      <tr><td>2. Play</td><td>Your instructor sets up the game with Yokota and Iwakuni as the team names. Play the rounds your instructor picks. Ten rounds takes about 25 minutes.</td></tr>
+      <tr><td>3. Write it down</td><td>After every word, write down the word and the fun fact the game shows. You need these for your exit ticket.</td></tr>
+      <tr><td>4. Final scores</td><td>Your instructor shows the winner screen and downloads the final scores.</td></tr>
+      <tr><td>5. Exit ticket</td><td>On your own, pick <b>two</b> words from tonight's game. For each word, write three things:<br>a. What it means, in your own words.<br>b. Which Fit Check question it belongs to: data, users, workflow, stakes, or rules.<br>c. One place it could show up in your own field or your capstone organization.</td></tr>
+    </tbody>
+  </table>
+  <div class="box">
+    <b>Sample exit ticket line.</b> This sample is made up to show the format.<br>
+    <i>Alert fatigue. It is when people start ignoring alerts because most of them turn out to be wrong. Fit Check question: users. In my maintenance shop, if a corrosion tool flagged every panel, inspectors would stop looking at the flags, and the one real flag would get missed.</i>
+  </div>
+
+  <h2>What to upload</h2>
+  <p>Every student uploads to this Dropbox. A teammate's upload does not count for you.</p>
+  <ul>
+    <li>Your <b>exit ticket</b>, as a Word or PDF file.</li>
+    <li>The <b>AI Use Disclosure Form</b>, filled in by you, even if you did not use generative AI (GenAI). If you used GenAI, paste your screenshots into the form.</li>
+  </ul>
+  <p>Upload both files before you leave class. You cannot make up AI Lab Sprints.</p>
+
+  <h2>How you earn the 30 points</h2>
+  <table>
+    <thead><tr><th>What your exit ticket shows</th><th>Points</th></tr></thead>
+    <tbody>
+      <tr><td style="white-space:normal">Two words from tonight's game, each explained in your own words</td><td>10</td></tr>
+      <tr><td style="white-space:normal">Each word matched to a Fit Check question, with a specific example from your field</td><td>15</td></tr>
+      <tr><td style="white-space:normal">AI Use Disclosure Form attached and filled in by you</td><td>5</td></tr>
+      <tr><th>Total</th><th>30</th></tr>
+    </tbody>
+  </table>
+  <p class="muted">The game score is for bragging rights between sites. It is not your grade.</p>
+
+  <h2>If something goes wrong</h2>
+  <table>
+    <thead><tr><th>Problem</th><th>What to do</th></tr></thead>
+    <tbody>
+      <tr><td>Old scores show up</td><td>Someone played on this computer before. Open the Teacher panel and click Reset game twice.</td></tr>
+      <tr><td>No voice</td><td>Check the room sound and use Chrome or Edge. If it still won't talk, click Voice off and read the clue out loud.</td></tr>
+      <tr><td>Wrong letter clicked</td><td>Open the Teacher panel and click Undo last change.</td></tr>
+      <tr><td>Points need fixing</td><td>The Teacher panel can add or take away points by hand.</td></tr>
+      <tr><td>Page won't load</td><td>Check that you copied the whole address, then tell your instructor.</td></tr>
+    </tbody>
+  </table>
+
+  <hr style="border:0;border-top:2px solid var(--gold);margin:40px 0 10px">
+  <p class="eyebrow">FOR THE INSTRUCTOR</p>
+  <h1 style="font-size:20px">WHAT TO TEACH BEFORE YOU PLAY</h1>
+  <p>The game only rewards what the class already knows, so the 10 minute lesson matters. Every word and bonus question comes from the Unit 6 Guide. Teach these five topics in this order, and make sure the numbers in the right column come up, because the bonus questions ask about them.</p>
+  <table>
+    <thead><tr><th>Topic and where it is</th><th>Words in the game</th><th>Make sure the class hears</th></tr></thead>
+    <tbody>
+      <tr><td style="white-space:normal"><b>1. Lab test, pilot, deployment</b><br>Guide Part 1, section 1</td><td style="white-space:normal">LAB TEST, PILOT, DEPLOYMENT</td><td style="white-space:normal">What each step proves. A pilot shows the tool works in one place with attention on it. GAO's first fix was to put one office in charge.</td></tr>
+      <tr><td style="white-space:normal"><b>2. The five cases</b><br>Guide Part 1, sections 2 to 6</td><td style="white-space:normal">EXTERNAL VALIDATION, ALERT FATIGUE, PREDICTIVE MAINTENANCE, SUMMER MELT, POUNCE, WORKFLOW</td><td style="white-space:normal">Eye clinic: more than a fifth of photos rejected. Sepsis: Michigan studied 38,455 hospitalizations, the model missed 67% of cases. GAO made 16 recommendations, all about organizing, planning, and measuring. Pounce cost $7 to $15 per student and did nothing for students who had not committed. Zillow wrote down about $304 million.</td></tr>
+      <tr><td style="white-space:normal"><b>3. Domain shift and shortcuts</b><br>Guide Part 2, section 1, and the Project Reference</td><td style="white-space:normal">DOMAIN SHIFT, SHORTCUT</td><td style="white-space:normal">The four ways a field can differ: equipment and conditions, population, definitions, time. The Mount Sinai X-ray model dropped from 0.802 to 0.717 at NIH. On this scale 0.50 is a coin flip.</td></tr>
+      <tr><td style="white-space:normal"><b>4. Domain knowledge and the Fit Check</b><br>Guide Part 2, sections 2 to 4</td><td style="white-space:normal">DOMAIN KNOWLEDGE, FIT CHECK, STAKES</td><td style="white-space:normal">The five questions: data, users, workflow, stakes, rules. Answer stakes early because it sets the bar for the other four. RAND's most common root cause is a misunderstood problem. BMW needed about 100 images per feature.</td></tr>
+      <tr><td style="white-space:normal"><b>5. Adapting a tool</b><br>Guide Part 2, sections 5 and 6</td><td style="white-space:normal">THRESHOLD, SENSITIVITY, SPECIFICITY, ANOMALY DETECTION, FEEDBACK LOOP</td><td style="white-space:normal">The five moves, and that moving the cutoff is free in the Transfer Test. Mayo's ECG model scored 0.93 in the lab and its trial raised new diagnoses 32%. A clinic asks if patients did better. A prediction model forecasts a number or event. Zillow skipped phase it in.</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Suggested run of the class (about 45 minutes)</h2>
+  <table>
+    <thead><tr><th>Time</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>0 to 10 min</td><td style="white-space:normal">Teach the five topics above.</td></tr>
+      <tr><td>10 to 35 min</td><td style="white-space:normal">Play 10 rounds, Yokota against Iwakuni. Each site's caller speaks for the team.</td></tr>
+      <tr><td>35 to 45 min</td><td style="white-space:normal">Show the winner screen, download the CSV, and give students time to write and upload the exit ticket.</td></tr>
+    </tbody>
+  </table>
+  <p class="muted">The Teacher panel has a word list with every clue and the Unit 6 page it came from, if you want to check them ahead of time. It shows the answers, so open it before class, not on the shared screen.</p>
+
+  <p class="noprint" style="margin-top:30px"><a href="index.html">◀ Back to the game</a></p>
+</main>
+</body>
+</html>

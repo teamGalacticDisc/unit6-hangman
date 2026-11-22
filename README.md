@@ -12,6 +12,7 @@ Every wrong letter adds a piece to an AI robot. Eight wrong letters and the robo
 - On your turn you can try to solve the whole word. Big points if you get it, and you lose points if you miss.
 - Each team gets one steal (solve the other team's word on their turn) and one lifeline (reveal a letter for free).
 - Whoever wins the word gets a bonus question from the unit.
+- The game reads each clue, answer, and bonus question out loud, so the whole room can follow along. There is a button to turn the voice off.
 
 ## Why I built it this way
 

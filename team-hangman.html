@@ -164,6 +164,7 @@ td.num,th.num{text-align:right}
   <div class="topbar">
     <h1>Unit 6 Team Hangman</h1>
     <div class="row">
+      <button id="voiceBtn">🔊 Voice on</button>
       <button id="howBtn">How to play</button>
       <button id="histBtn">Round history</button>
       <button id="teacherBtn" class="primary">Teacher panel</button>
@@ -190,6 +191,7 @@ td.num,th.num{text-align:right}
         <div class="clue" id="clue"></div>
         <div class="word" id="word"></div>
         <div class="kb" id="kb"></div>
+        <div class="row" style="margin-top:12px"><button id="readClueBtn">🔊 Read the clue again</button></div>
         <div class="msg" id="msg"></div>
       </div>
       <!-- reveal and bonus -->
@@ -461,6 +463,7 @@ function howToHtml(){
    <li><b>Steal (once per game):</b> when it is the other team's turn, you can jump in and solve their word. Right is +${st.solve}. Wrong is minus ${st.wrongSolve}.</li>
    <li><b>Lifeline (once per game):</b> on your turn, reveal one letter for free. You keep the turn.</li>
    <li><b>Bonus question:</b> the team that wins the word gets a Unit 6 question worth +${st.bonus}.</li>
+   <li><b>Voice:</b> the game reads each clue, answer, and bonus question out loud. Use the Voice button at the top to turn it off.</li>
    <li>A round ends when the word is solved or the AI robot is finished (${MAXWRONG} pieces). Most points after the last round wins.</li>
   </ul>`;
 }
@@ -475,6 +478,7 @@ function initSetup(){
 function startGame(){
   const n = +$('rounds').value;
   const num = (id, d) => { const v = parseInt($(id).value,10); return isNaN(v) ? d : Math.abs(v); };
+  renderWinner.spoken = false;
   S = defaultState();
   S.teams = [
     {name: $('nameA').value.trim() || 'Team 1', score:0, steal:true, lifeline:true},
@@ -494,6 +498,7 @@ function startRound(r){
   S.optOrder = shuffle([0,1,2,3]);
   setMsg(`${S.teams[S.turn].name}, you start this round.`);
   save(); render();
+  readClue();
 }
 
 /* ===================== PLAY ACTIONS ===================== */
@@ -570,10 +575,11 @@ function endRound(winner, how){
   S.winner = winner; S.how = how;
   S.history.push({round:S.round, word:cur().w, winner: winner===null ? null : winner, how, pts:S.roundPts.slice()});
   S.phase = 'reveal';
+  setTimeout(readReveal, 50);
   addLog(winner === null ? `Round ${S.round}: AI robot finished, nobody solved ${cur().w}` : `Round ${S.round}: ${S.teams[winner].name} won ${cur().w}`);
   save(); render();
 }
-function startBonus(){ S.phase = 'bonus'; save(); render(); }
+function startBonus(){ S.phase = 'bonus'; save(); render(); readBonus(); }
 function pickBonus(i){
   if(S.phase !== 'bonus' || S.bonusPick !== null) return;
   snapshot(`${S.teams[S.winner].name} answered the bonus`);
@@ -583,6 +589,7 @@ function pickBonus(i){
   if(ok) addPoints(S.winner, S.settings.bonus, 'bonus question');
   else addLog(`${S.teams[S.winner].name} missed the bonus`);
   save(); render();
+  speak(ok ? `Right! ${S.settings.bonus} points for ${S.teams[S.winner].name}.` : `Not quite. The answer is ${cur().opts[cur().a]}.`, 1);
 }
 function nextRound(){
   if(S.round >= S.settings.rounds){ finishGame(); return; }
@@ -614,7 +621,7 @@ function skipWord(){
   if(S.phase !== 'play') return;
   snapshot('Teacher skipped the word');
   S.history.push({round:S.round, word:cur().w, winner:null, how:'skipped', pts:S.roundPts.slice()});
-  S.winner = null; S.how = 'skipped'; S.phase = 'reveal';
+  S.winner = null; S.how = 'skipped'; S.phase = 'reveal'; stopSpeaking();
   addLog(`Round ${S.round}: teacher skipped ${cur().w}`);
   save(); render();
 }
@@ -660,6 +667,48 @@ function downloadCsv(){
   document.body.appendChild(link); link.click(); link.remove();
   setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
+
+/* ===================== READ ALOUD ===================== */
+const VKEY = 'arin320_unit6_hangman_voice';
+let voiceOn = true;
+try{ voiceOn = localStorage.getItem(VKEY) !== 'off'; }catch(e){}
+function pickVoices(){
+  if(!('speechSynthesis' in window)) return [null,null];
+  const all = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang));
+  const nice = all.filter(v => /natural|online|google/i.test(v.name));
+  const pool = (nice.length >= 2 ? nice : all);
+  return [pool[0] || null, pool[1] || pool[0] || null];
+}
+/* who: 0 = narrator (clues and questions), 1 = host (answers and results) */
+function speak(text, who){
+  if(!voiceOn || !('speechSynthesis' in window) || !text) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text.replace(/F\/A-18/g,'F A 18'));
+  const v = pickVoices()[who||0];
+  if(v) u.voice = v;
+  u.rate = who ? 1.0 : 0.95;
+  u.pitch = who ? 1.1 : 1.0;
+  try{ speechSynthesis.speak(u); }catch(e){}
+}
+function stopSpeaking(){ if('speechSynthesis' in window) speechSynthesis.cancel(); }
+function toggleVoice(){
+  voiceOn = !voiceOn;
+  try{ localStorage.setItem(VKEY, voiceOn ? 'on' : 'off'); }catch(e){}
+  if(!voiceOn) stopSpeaking();
+  updateVoiceBtn();
+}
+function updateVoiceBtn(){ $('voiceBtn').textContent = voiceOn ? '🔊 Voice on' : '🔇 Voice off'; }
+function readClue(){ if(S && S.phase === 'play') speak(`Round ${S.round}. ${S.teams[S.turn].name}, you're up. Here is the clue. ${cur().clue} The answer has ${cur().w.split(' ').length > 1 ? cur().w.split(' ').length + ' words' : 'one word'}.`, 0); }
+function readReveal(){
+  const w = cur();
+  let head = S.winner === null ? (S.how === 'plane' ? 'The robot is finished. Nobody solved it.' : 'Word skipped.') : `${S.teams[S.winner].name} wins this word.`;
+  speak(`${head} The answer is ${w.w.toLowerCase()}. ${w.fact}`, 1);
+}
+function readBonus(){
+  const w = cur();
+  speak(`Bonus question for ${S.teams[S.winner].name}. ${w.q} ` + S.optOrder.map((oi,k) => `${'ABCD'[k]}. ${w.opts[oi]}.`).join(' '), 0);
+}
+if('speechSynthesis' in window) speechSynthesis.onvoiceschanged = () => {};
 
 /* ===================== RENDER ===================== */
 function showView(v){
@@ -762,11 +811,12 @@ function renderReveal(){
         : `<div class="msg bad">Not quite. The answer is ${esc(w.opts[w.a])}.</div>`;
       result += `<button class="primary" style="font-size:1.3em" onclick="nextRound()">${nextLabel}</button>`;
     }
-    body = `<h3 style="margin-top:18px;font-size:1.4em">Bonus for ${esc(S.teams[S.winner].name)}: ${esc(w.q)}</h3><div class="opts">${opts}</div>${result}`;
+    body = `<h3 style="margin-top:18px;font-size:1.4em">Bonus for ${esc(S.teams[S.winner].name)}: ${esc(w.q)}</h3><div class="opts">${opts}</div>${picked===null ? '<button onclick="readBonus()">🔊 Read the question again</button>' : ''}${result}`;
   }
   $('revealBox').innerHTML = head + info + body;
 }
 function renderWinner(){
+  if(!renderWinner.spoken){ renderWinner.spoken = true; const [x,y]=S.teams; speak(x.score===y.score ? `It's a tie at ${x.score} points!` : `${(x.score>y.score?x:y).name} wins, with ${Math.max(x.score,y.score)} points!`, 1); }
   const [a,b] = S.teams;
   const tie = a.score === b.score;
   const win = a.score > b.score ? a : b;
@@ -785,6 +835,7 @@ function renderWinner(){
     </div>`;
 }
 function newGameSameTeams(){
+  renderWinner.spoken = false;
   $('nameA').value = S.teams[0].name; $('nameB').value = S.teams[1].name;
   try{ localStorage.removeItem(KEY); }catch(e){}
   S = null; showView('setup'); initSetup();
@@ -819,6 +870,9 @@ $('resumeBtn').onclick = () => { S = load(); if(S){ if(!S.undo) S.undo=[]; rende
 $('howBtn').onclick = () => showModal(howToHtml() + '<button class="primary" onclick="hideModal()">Got it</button>');
 $('histBtn').onclick = () => showModal('<h2>Round history</h2>' + historyTable() + '<div class="row" style="margin-top:12px"><button onclick="downloadCsv()">Download CSV</button><button class="primary" onclick="hideModal()">Close</button></div>');
 $('teacherBtn').onclick = openDrawer;
+$('voiceBtn').onclick = toggleVoice;
+$('readClueBtn').onclick = readClue;
+updateVoiceBtn();
 $('closeDrawer').onclick = () => $('drawer').classList.add('hidden');
 $('undoBtn').onclick = undo;
 $('passBtn').onclick = passTurn;

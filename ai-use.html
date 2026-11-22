@@ -36,6 +36,7 @@ a{color:#5ad1ff}
     <li>Set every rule: teams take turns, right letters keep the turn, one steal and one lifeline per team, a bonus question for the team that wins each word, and a set number of rounds I choose.</li>
     <li>Pointed the AI at the Unit 6 course material and told it not to make up any terms that are not in the unit. Every word lists the Unit 6 page and section it came from, so anyone can check it.</li>
     <li>Asked for the tools I need to run it: a live scoreboard, a teacher panel to change points and undo mistakes, a round history, scores that survive a refresh, a CSV download, and a winner screen.</li>
+    <li>Asked for the game to read the clues and questions out loud, so the class can listen instead of only reading the screen.</li>
     <li>Changed the drawing. The first version built a fighter jet. I asked for something tied to ARIN instead, so now each wrong letter builds an AI robot.</li>
     <li>Chose where to host the game and published it here.</li>
   </ul>
@@ -45,6 +46,7 @@ a{color:#5ad1ff}
     <thead><tr><th>Part</th><th>How AI was used</th></tr></thead>
     <tbody>
       <tr><td>Code</td><td>The AI wrote the HTML, CSS, and JavaScript for the game and this site: the letter board, turns, scoring, steals, lifelines, bonus questions, teacher panel, round history, saving, and the CSV download. It also played through full games in a browser to test it.</td></tr>
+      <tr><td>Voices</td><td>No AI voice clips were made. The voices are the speech engine built into the web browser. The AI wrote the code that reads each clue and bonus question in one voice and each answer and result in a second voice.</td></tr>
       <tr><td>Images</td><td>No image generator was used. The AI drew the robot as simple shapes written directly in code.</td></tr>
       <tr><td>Text</td><td>Using the Unit 6 material, the AI picked 19 key terms and drafted each clue, fun fact, and bonus question. It did not pull terms from anywhere else, and each one lists the Unit 6 page it came from.</td></tr>
     </tbody>
@@ -63,6 +65,10 @@ a{color:#5ad1ff}
   <p><b>Changing the drawing.</b></p>
   <blockquote>Let's have it be something related to ARIN instead of a fighter jet.</blockquote>
   <p class="muted">The AI swapped the jet for an AI robot built in 8 pieces. The last piece is an AI chip that lights up, and when it lights up the round is over.</p>
+
+  <p><b>Reading it out loud.</b></p>
+  <blockquote>Can you have it read the question out loud?</blockquote>
+  <p class="muted">The AI added a read aloud voice like my Unit 5 quiz show. A narrator voice reads each clue and bonus question, and a host voice reads the answer, the fun fact, and the result. There's a button to turn the voice off and buttons to hear the clue or question again.</p>
 
   <p><b>Hosting it.</b></p>
   <blockquote>Okay now can you host it on GitHub? Look at my Unit 5 sprint repo as well and try to do the same.</blockquote>
